@@ -6,6 +6,35 @@ const scoreDisplay = document.getElementById("score");
 let correctColor;
 let score = 0;
 
+const easyBtn = document.querySelector(".easyBtn");
+const hardBtn = document.querySelector(".hardBtn");
+let numSquares = 12;
+
+easyBtn.addEventListener("click", function () {
+  numSquares = 6;
+  updateGame(numSquares);
+  easyBtn.classList.add("selected");
+  hardBtn.classList.remove("selected");
+});
+
+hardBtn.addEventListener("click", function () {
+  numSquares = 12;
+  updateGame(numSquares);
+  hardBtn.classList.add("selected");
+  easyBtn.classList.remove("selected");
+});
+
+function updateGame(num) {
+  for (let i = 0; i < squares.length; i++) {
+    if (colors[i]) {
+      squares[i].style.display = "block";
+      squares[i].style.backgroundColor = colors[i];
+    } else {
+      squares[i].style.display = "none";
+    }
+  }
+}
+
 function randomColor() {
   const r = Math.floor(Math.random() * 256);
   const g = Math.floor(Math.random() * 256);

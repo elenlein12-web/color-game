@@ -19,6 +19,25 @@ header {
 h1 {
   margin-bottom: 20px;
 }
+.btn {
+  width: 150px;
+  height: 40px;
+  border-radius: 10px;
+  border: none;
+}
+.easyBtn {
+  background-color: green;
+}
+.easyBtn:hover {
+  background-color: rgb(9, 94, 9);
+
+}
+.hardBtn {
+  background-color: red;
+}
+.hardBtn:hover {
+  background-color: rgb(173, 7, 7);
+}
 #rgb {
   font-size: 28px;
   font-weight: bold;
