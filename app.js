@@ -8,20 +8,44 @@ let score = 0;
 
 const easyBtn = document.querySelector(".easyBtn");
 const hardBtn = document.querySelector(".hardBtn");
-let numSquares = 12;
 
-easyBtn.addEventListener("click", function () {
-  numSquares = 6;
-  updateGame(numSquares);
-  easyBtn.classList.add("selected");
-  hardBtn.classList.remove("selected");
-});
 
 hardBtn.addEventListener("click", function () {
-  numSquares = 12;
-  updateGame(numSquares);
-  hardBtn.classList.add("selected");
-  easyBtn.classList.remove("selected");
+function init() {
+  colorsDiv.innerHTML = "";
+  message.textContent = "";
+  const colors = [];
+
+  for (let i = 0; i < 12; i++) {
+    colors.push(randomColor());
+  }
+
+  correctColor = colors[Math.floor(Math.random() * colors.length)];
+
+  rgbDisplay.textContent = correctColor.toLocaleUpperCase();
+  colors.forEach((color) => {
+    const box = document.createElement("div");
+    box.classList.add("color-box");
+    box.style.backgroundColor = color;
+
+    box.addEventListener("click", () => {
+      if (color === correctColor) {
+        score += 5;
+        message.textContent = "პასუხი სწორია! +5 ქულა";
+        scoreDisplay.textContent = `ქულა : ${score}`;
+
+        resetBtn.textContent = "Play Again?";
+        document.body.style.backgroundColor = correctColor;
+      } else {
+        score -= 10;
+        scoreDisplay.textContent = `ქულა : ${score}`;
+        box.style.opacity = "0";
+        message.textContent = " სცადე ისევ!";
+      }
+    });
+    colorsDiv.appendChild(box);
+  });
+}
 });
 
 function updateGame(num) {
